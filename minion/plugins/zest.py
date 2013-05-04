@@ -18,7 +18,7 @@ class ZestPlugin(ExternalProcessPlugin):
     ZEST_NAME = "zest.sh"
 
     def _parse_zest_output(self, output):
-        if 'FAILED' in output:
+        if 'FAILED' in output or 'ActionFailException' in output:
             yield {'Summary': self.configuration['zest']['script']['title'],
                    'Severity': 'High',
                    'Description': 'The Zest script raised an assertion.'}
